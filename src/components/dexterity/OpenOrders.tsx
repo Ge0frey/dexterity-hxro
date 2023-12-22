@@ -6,7 +6,7 @@ import { notify } from "utils/notifications";
 
 export const OpenOrders: FC = () => {
     const {
-        orderData, // ordeData: OrderData[]
+        orderData,// ordeData: OrderData[]
         lastUpdated,
         updated,
         trader
@@ -18,7 +18,7 @@ export const OpenOrders: FC = () => {
         setRequested(true)
         let response: any[]
         try {
-            // Cancel All Open Orders
+            response = await trader.cancelAllOrders([selectedProduct.name])// Cancel All Open Orders
         } catch (error) {
             notify({type: 'error', message: `Error canceling all orders, ${error}`})
         } finally {

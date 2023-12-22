@@ -29,7 +29,18 @@ export const BasicsView: FC = ({ }) => {
         network == 'mainnet-beta' ? process.env.NEXT_PUBLIC_MAINNET_RPC! :
           clusterApiUrl(network)
 
-    // Fetch for the Manifest
+    // Constructing our DexterityWallet from the Solana Wallet Adapter
+		const wallet: DexterityWallet = {
+      publicKey: publicKey!,
+      signTransaction,
+      signAllTransactions,
+    }
+
+		// Fetching the Manifest
+		const manifest = await dexterity.getManifest(rpc, true, wallet)
+
+		// Setting our Manifest with our Global Context
+		setManifest(manifest)// Fetch for the Manifest
 
   }, [publicKey, network]);
 

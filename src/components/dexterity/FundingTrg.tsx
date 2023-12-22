@@ -19,7 +19,10 @@ export const FundingTrader: FC = () => {
         if (!amount || !publicKey || !manifest) return;
         try {
 
-          // Deposit
+          setIsLoading(true);
+          setDepositStatus('processing');
+          await trader.deposit(dexterity.Fractional.New(amount, 0), null);
+// Deposit
 
         } catch (error: any) {
             setDepositStatus('failed');
@@ -33,7 +36,9 @@ export const FundingTrader: FC = () => {
         if (!amount || !publicKey || !manifest) return;
         try {
 
-          // Withdraw
+          setIsLoading(true);
+          setWithdrawStatus('processing');
+          await trader.withdraw(dexterity.Fractional.New(amount, 0));// Withdraw
 
         } catch (error: any) {
             setWithdrawStatus('failed');
